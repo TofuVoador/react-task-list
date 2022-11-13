@@ -3,8 +3,7 @@
     margin: 30px auto;
     overflow: auto;
     min-height: 300px;
-    border: 2px solid chartreuse;
-    color: chartreuse;
+    border: 2px solid magenta;
     padding: 30px;
     border-radius: 10px;
 }

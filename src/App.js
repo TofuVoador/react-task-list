@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './App.css';
+import AddTask from "./components/AddTask";
 import TasksManager from "./components/TasksManager";
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <>
       <div className="container">
+        <AddTask/>
         <TasksManager tasks={tasks}/>
       </div>
     </>
