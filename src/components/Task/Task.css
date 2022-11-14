@@ -1,7 +1,7 @@
 .task-container {
     background-color: #444;
     margin: 8px 0;
-    padding: 15px 20px;
+    padding: 15px;
     display: flex;
     border-radius: 5px;
     justify-content: space-between;
@@ -9,14 +9,22 @@
     align-items: center;
 }
 
-.task-title {
+.task-info-container {
     cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 15px;
+    min-width: 70%;
+    transition: all 0.5s ease;
+}
+
+.task-info-container:hover {
+    color: magenta;
 }
 
 .remove-task-button, .task-details-button {
     background-color: #444;
     border: none;
-    font-size: 16px;
+    font-size: 30px;
     color: magenta;
     margin: 0 5px;
     transition: all 0.5s ease;

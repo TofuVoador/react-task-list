@@ -11,9 +11,10 @@ const Task = ({task, handleTaskClick, handleTaskDelete}) => {
     }
 
     return ( 
-        <div className='task-container' style={task.completed ? {borderLeft: "6px solid magenta"} : {}}>
-            <div className='task-title' onClick={() => handleTaskClick(task.id)} >
-                {task.title}
+        <div className='task-container' style={task.completed ? {borderLeft: "10px solid magenta", paddingLeft: "5px"} : {}}>
+            <div className='task-info-container' onClick={() => handleTaskClick(task.id)} >
+                <h2 className='task-title'> {task.title} </h2> 
+                <p className='task-description'>{task.description}</p>
             </div>
             <div className='buttons-container'>
                 <button className='task-details-button' onClick={handleTaskDetails}>

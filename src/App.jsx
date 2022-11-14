@@ -9,7 +9,6 @@ import Header from "./components/Header";
 import TaskDetails from "./components/TaskDetails";
 
 const App = () => {
-  // const message = 'Hello World!'
   const [tasks, setTasks] = useState([]);
 
   const handleTaskClick = (taskId) => {
@@ -22,13 +21,29 @@ const App = () => {
     setTasks(newTasks);
   }
 
+  const handleDescribeTask = (taskId, taskDesc) => {
+    const newTasks = tasks.map(task => {
+      if(task.id === taskId) return {... task, description: taskDesc}
+
+      return task;
+    })
+
+    setTasks(newTasks);
+  }
+
+  function handleGetTaskDescription (taskId) {
+    const task = tasks.filter(task => task.id == taskId);
+    return task[0];
+  }
+
   const handleTaskAddition = (taskTitle) => {
     const newTasks = [
       ... tasks,
       {
         title: taskTitle,
         id: uuidv4(),
-        completed: false
+        completed: false,
+        description: ""
       }
     ];
 
@@ -51,7 +66,11 @@ const App = () => {
             <TasksManager tasks={tasks} handleTaskClick={handleTaskClick} handleTaskDelete={handleTaskDelete}/>
           </>
         )}/>
-        <Route path="/:taskId" exact component={TaskDetails}/>
+        <Route path="/:taskId" exact render={() => (
+          <>
+            <TaskDetails handleDescribeTask={handleDescribeTask} handleGetTaskDescription={handleGetTaskDescription}/>
+          </>
+        )}/>
       </div>
     </Router>
   );
