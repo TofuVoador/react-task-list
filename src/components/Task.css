@@ -19,4 +19,9 @@
     font-size: 16px;
     color: magenta;
     margin: 0 5px;
+    transition: all 0.5s ease;
+}
+
+.remove-task-button:hover, .task-details-button:hover {
+    color: #eee;
 }
