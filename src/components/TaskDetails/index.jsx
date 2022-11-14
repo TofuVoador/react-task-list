@@ -28,7 +28,7 @@ const TaskDetails = ({handleDescribeTask, handleGetTaskDescription}) => {
             <div className="task-details-container">
                 <h1>{task.title}</h1>
                 <h2>Descrição</h2>
-                <input onChange={handleDescriptionChange} value={descData} type="text" className='description-input'/>
+                <input onChange={handleDescriptionChange} value={descData} placeholder="(digite aqui)" type="text" className='description-input'/>
             </div>
         </>
     );

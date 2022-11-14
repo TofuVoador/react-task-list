@@ -17,10 +17,6 @@
     transition: all 0.5s ease;
 }
 
-.task-info-container:hover {
-    color: magenta;
-}
-
 .remove-task-button, .task-details-button {
     background-color: #444;
     border: none;
