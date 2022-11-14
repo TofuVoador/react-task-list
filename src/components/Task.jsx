@@ -1,11 +1,17 @@
 import React from 'react';
+import { CgClose } from "react-icons/cg";
 import "./Task.css";
 
-const Task = ({task, handleTaskClick}) => {
+const Task = ({task, handleTaskClick, handleTaskDelete}) => {
     return ( 
-        <div className='task-container' onClick={() => handleTaskClick(task.id)} style={task.completed ? {borderLeft: "6px solid magenta"} : {}}>
-            <div className='task-title'>
+        <div className='task-container' style={task.completed ? {borderLeft: "6px solid magenta"} : {}}>
+            <div className='task-title' onClick={() => handleTaskClick(task.id)} >
                 {task.title}
+            </div>
+            <div className='buttons-container'>
+                <button className='remove-task-button' onClick={() => handleTaskDelete(task.id)}>
+                    <CgClose/>
+                </button>
             </div>
         </div>
         // <div className='task-container' handleTaskClick={handleTaskClick}>{task.title}</div>

@@ -1,10 +1,10 @@
 import React from "react";
 import Task from "./Task";
 
-const TasksManager = ({tasks, handleTaskClick}) => {
+const TasksManager = ({tasks, handleTaskClick, handleTaskDelete}) => {
   return (
     <>
-      {tasks.map(task => <Task task={task} handleTaskClick={handleTaskClick}/>)}
+      {tasks.map(task => <Task task={task} handleTaskClick={handleTaskClick} handleTaskDelete={handleTaskDelete}/>)}
     </>
   );
 };
