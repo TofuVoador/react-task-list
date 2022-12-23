@@ -4,7 +4,7 @@ import Button from '../Button';
 
 import "./TaskDetails.css"
 
-const TaskDetails = ({handleDescribeTask, handleGetTaskDescription}) => {
+const TaskDetails = ({handleDescribeTask, handleGetTaskDescription}) => {       //show details from a task
     const params = useParams();
     const task = handleGetTaskDescription(params.taskId);
     const history = useHistory();

@@ -10,18 +10,18 @@ import TaskDetails from "./components/TaskDetails";
 import { useEffect } from "react";
 
 const App = () => {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState([])    //create tasks array
 
-  useEffect(() => {
+  useEffect(() => {   //load persistent data
     const t = JSON.parse(localStorage.getItem("tasks"));
     setTasks(t != undefined ? t : [])
   }, [])
     
-  const save = (newTasks) => {
+  const save = (newTasks) => {    //save persistent data
     localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
 
-  const handleTaskClick = (taskId) => {
+  const handleTaskClick = (taskId) => {   //change task status
     const newTasks = tasks.map(task => {
       if(task.id === taskId) return {... task, completed: !task.completed}
 
@@ -32,7 +32,7 @@ const App = () => {
     save(newTasks);
   }
 
-  const handleDescribeTask = (taskId, taskDesc) => {
+  const handleDescribeTask = (taskId, taskDesc) => {    //change task description
     const newTasks = tasks.map(task => {
       if(task.id === taskId) return {... task, description: taskDesc}
 
@@ -43,12 +43,12 @@ const App = () => {
     save(newTasks);
   }
 
-  function handleGetTaskDescription (taskId) {
+  function handleGetTaskDescription (taskId) {    //get task description
     const task = tasks.filter(task => task.id == taskId);
     return task[0];
   }
 
-  const handleTaskAddition = (taskTitle) => {
+  const handleTaskAddition = (taskTitle) => {   //add new task
     const newTasks = [
       ... tasks,
       {
@@ -63,7 +63,7 @@ const App = () => {
     save(newTasks);
   }
 
-  const handleTaskDelete = (taskId) => {
+  const handleTaskDelete = (taskId) => {    //delete task by id
     const newTasks = tasks.filter(task => task.id !== taskId);
 
     setTasks(newTasks);
