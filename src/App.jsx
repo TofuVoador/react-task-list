@@ -7,15 +7,18 @@ import { BrowserRouter as Router, Route} from "react-router-dom";
 import './App.css';
 import Header from "./components/Header";
 import TaskDetails from "./components/TaskDetails";
+import { useEffect } from "react";
 
 const App = () => {
   const [tasks, setTasks] = useState([])
 
-  var t = localStorage.getItem('tasks') || [];
-  setTasks(t)
-
-  const save = () => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+  useEffect(() => {
+    const t = JSON.parse(localStorage.getItem("tasks"));
+    setTasks(t != undefined ? t : [])
+  }, [])
+    
+  const save = (newTasks) => {
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
 
   const handleTaskClick = (taskId) => {
@@ -26,7 +29,7 @@ const App = () => {
     })
 
     setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    save(newTasks);
   }
 
   const handleDescribeTask = (taskId, taskDesc) => {
@@ -37,7 +40,7 @@ const App = () => {
     })
 
     setTasks(newTasks);
-
+    save(newTasks);
   }
 
   function handleGetTaskDescription (taskId) {
@@ -57,29 +60,28 @@ const App = () => {
     ];
 
     setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    save(newTasks);
   }
 
   const handleTaskDelete = (taskId) => {
     const newTasks = tasks.filter(task => task.id !== taskId);
 
     setTasks(newTasks);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    save(newTasks);
   }
 
   return (
     <>
-      <a>a</a>
       <Router>
         <div className="container">
-          <Route path="/" >
+          <Route path="/" exact>
             <>
               <Header/>
               <AddTask handleTaskAddition={handleTaskAddition}/>
               <TasksManager tasks={tasks} handleTaskClick={handleTaskClick} handleTaskDelete={handleTaskDelete}/>
             </>
           </Route>
-          <Route path="/:taskId">
+          <Route path="/:taskId" exact>
             <>
               <TaskDetails handleDescribeTask={handleDescribeTask} handleGetTaskDescription={handleGetTaskDescription}/>
             </>
