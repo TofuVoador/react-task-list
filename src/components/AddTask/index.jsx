@@ -10,6 +10,8 @@ const AddTask = ({handleTaskAddition}) => {
     }
 
     const handleAddTasksClick = () => {
+        if(inputData == "") return alert("Não é possível adicionar uma task sem nome");
+
         handleTaskAddition(inputData);
         setInputData("");
     }

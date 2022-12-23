@@ -4,20 +4,25 @@ import Button from '../Button';
 
 import "./TaskDetails.css"
 
-const TaskDetails = ({handleDescribeTask, handleGetTaskDescription}) => {       //show details from a task
+const TaskDetails = ({handleChangeTask, handleGetTaskByID}) => {       //show details from a task
     const params = useParams();
-    const task = handleGetTaskDescription(params.taskId);
+    const task = handleGetTaskByID(params.taskId);
     const history = useHistory();
 
     const [descData, setDescData] = useState(task.description);
+    const [startData, setStartData] = useState(task.start);
 
     const handleBackButton = () => {
-        handleDescribeTask(params.taskId, descData);
+        handleChangeTask(params.taskId, descData, startData);
         history.goBack();
     }
 
     const handleDescriptionChange = (e) => {
         setDescData(e.target.value);
+    }
+
+    const handleStartChange = (e) => {
+        setStartData(e.target.value);
     }
 
     return (
@@ -29,6 +34,8 @@ const TaskDetails = ({handleDescribeTask, handleGetTaskDescription}) => {       
                 <h1>{task.title}</h1>
                 <h2>Descrição</h2>
                 <input onChange={handleDescriptionChange} value={descData} placeholder="(digite aqui)" type="text" className='description-input'/>
+                <h2>Horário</h2>
+                <input onChange={handleStartChange} value={startData} type="time" className='description-input'/>
             </div>
         </>
     );

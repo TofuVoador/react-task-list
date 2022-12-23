@@ -32,18 +32,22 @@ const App = () => {
     save(newTasks);
   }
 
-  const handleDescribeTask = (taskId, taskDesc) => {    //change task description
+  const handleChangeTask = (taskId, taskDesc, taskStart) => {    //change task data
     const newTasks = tasks.map(task => {
-      if(task.id === taskId) return {... task, description: taskDesc}
+      if(task.id === taskId) return {... task, description: taskDesc, start: taskStart}
 
       return task;
     })
+
+    newTasks.sort(function (a, b) {   //sort task by time
+      return a.start.localeCompare(b.start);
+    });
 
     setTasks(newTasks);
     save(newTasks);
   }
 
-  function handleGetTaskDescription (taskId) {    //get task description
+  function handleGetTaskByID (taskId) {    //get task by id
     const task = tasks.filter(task => task.id == taskId);
     return task[0];
   }
@@ -55,9 +59,14 @@ const App = () => {
         title: taskTitle,
         id: uuidv4(),
         completed: false,
-        description: ""
+        description: "",
+        start: "08:00"
       }
     ];
+
+    newTasks.sort(function (a, b) {   //sort task by time
+      return a.start.localeCompare(b.start);
+    });
 
     setTasks(newTasks);
     save(newTasks);
@@ -83,7 +92,7 @@ const App = () => {
           </Route>
           <Route path="/:taskId" exact>
             <>
-              <TaskDetails handleDescribeTask={handleDescribeTask} handleGetTaskDescription={handleGetTaskDescription}/>
+              <TaskDetails handleChangeTask={handleChangeTask} handleGetTaskByID={handleGetTaskByID}/>
             </>
           </Route>
         </div>

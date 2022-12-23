@@ -13,7 +13,8 @@ const Task = ({task, handleTaskClick, handleTaskDelete}) => {       //task compo
     return ( 
         <div className='task-container' style={task.completed ? {borderLeft: "10px solid magenta", paddingLeft: "5px"} : {}}>
             <div className='task-info-container' onClick={() => handleTaskClick(task.id)} >
-                <h2 className='task-title'> {task.title} </h2> 
+                <p className='task-description'>{task.start}</p>
+                <h2 className='task-title'> {task.title} </h2>
                 <p className='task-description'>{task.description}</p>
             </div>
             <div className='buttons-container'>
